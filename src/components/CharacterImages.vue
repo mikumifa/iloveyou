@@ -229,10 +229,10 @@ export default {
       // 在Canvas绘制完成后再保存图片
       setTimeout(() => {
 
-        for (let i = 0; i < gif_canvasList.length; i++) {
+        for (let i = 0; i < gif_canvasList.length-1; i++) {
           gif.addFrame(gif_canvasList[i], {delay: 500});
         }
-
+        gif.addFrame(gif_canvasList[gif_canvasList.length-1], {delay: 1000});
         gif.on('finished', function (blob) {
           this.gifUrl = URL.createObjectURL(blob); // 将生成的 GIF 显示在页面上
         }.bind(this));
