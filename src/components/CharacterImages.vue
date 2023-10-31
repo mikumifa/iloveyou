@@ -6,7 +6,7 @@
 
     <button @click="saveImage(image)">保存图片</button>
   </div>
-  <img :src="image" alt="Generated Image" :style="{ 'max-width': '1920px', 'max-height': 'auto' }">
+  <img :src="image" alt="Generated Image" :style="{ 'max-width': '640px', 'max-height': 'auto' }">
 
   <canvas id="canvas"></canvas>
 </template>
