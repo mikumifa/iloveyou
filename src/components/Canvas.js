@@ -1,8 +1,9 @@
 export default class Canvas {
-    constructor(imageUrl, canvas, position) {
+    constructor(imageUrl, canvas, position,font) {
         this.imageUrl = imageUrl;
         this.canvas = canvas;
         this.position = position
+        this.font=font
         this.ctx = this.canvas.getContext('2d');
     }
 
@@ -23,7 +24,7 @@ export default class Canvas {
             // 设置字体大小和颜色
             this.ctx.translate(this.position.x+position.x, this.position.y+position.y);
             this.ctx.rotate(randomAngle*Math.PI/180);
-            this.ctx.font = "bold 220px Arial";
+            this.ctx.font = this.font;
             this.ctx.fillStyle = "black"; // 红色字体颜色
             this.ctx.fillText(text, 0, 0);
             this.ctx.restore();

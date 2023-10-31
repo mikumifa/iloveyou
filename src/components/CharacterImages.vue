@@ -189,7 +189,7 @@ export default {
       canvas.width = text.length * (pic_width + interval) + interval
       canvas.height = pic_height + 2 * interval
 
-      const charArray = Array.from(text);
+      const charArray = this.splitText(text);
       for (let index = 0; index < charArray.length; index++) {
         let gif_canvas = document.createElement("canvas")
         gif_canvas.width = pic_width
@@ -208,14 +208,15 @@ export default {
           first = randomIndex
         }
         const selectedImageUrl = back_image[randomIndex];
+        let font = this.adjustFontSizeToFitWidth("bold 220px Arial",char,220)
         const myCanvas = new Canvas(selectedImageUrl, canvas, {
           x: index * (interval + pic_width) + interval,
           y: interval
-        });
+        }, font);
         const myGifCanvas = new Canvas(selectedImageUrl, gif_canvasList[index], {
           x: 0,
           y: 0
-        });
+        }, font);
         myCanvas.draw(back_position[randomIndex], char);
         myGifCanvas.draw(back_position[randomIndex], char);
       }
@@ -241,6 +242,24 @@ export default {
       }, 100); // 可能需要调整延迟时间
 
     },
+    adjustFontSizeToFitWidth(font, text, maxWidth) {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      // 创建一个虚拟的Canvas来测量文本宽度
+      ctx.font = font;
+      let textWidth = ctx.measureText(text).width;
+
+      // 根据文本宽度和最大宽度来动态计算字体大小
+      let fontSize = maxWidth; // 获取当前字体大小
+      while (textWidth > maxWidth && fontSize > 0) {
+        fontSize--; // 逐渐减小字体大小
+        ctx.font = `bold ${fontSize}px Arial`; // 更新字体大小
+        textWidth = ctx.measureText(text).width; // 重新计算文本宽度
+      }
+
+      return `bold ${fontSize}px Arial`; // 返回调整后的字体样式
+    },
     saveImage() {
       // 创建一个隐藏的链接元素并设置下载属性，然后模拟用户点击以保存图片
       const link = document.createElement("a");
@@ -259,6 +278,34 @@ export default {
       link.click();
       document.body.removeChild(link);
     },
+    splitText(text) {
+      const chinesePattern = /[\u4e00-\u9fa5]/; // 匹配中文字符
+      const englishPattern = /[a-zA-Z]/; // 匹配英文字符
+      const charArray = [];
+      let currentChar = '';
+      for (const char of text) {
+        if (chinesePattern.test(char)) {
+          if (currentChar !== '') {
+            charArray.push(currentChar);
+            currentChar = '';
+          }
+          charArray.push(char);
+        } else if (englishPattern.test(char) || char === ' ') {
+          currentChar += char;
+        } else {
+          if (currentChar !== '') {
+            charArray.push(currentChar);
+            currentChar = '';
+          }
+          charArray.push(char);
+        }
+      }
+      // 处理最后的字符
+      if (currentChar !== '') {
+        charArray.push(currentChar);
+      }
+      return charArray;
+    }
   },
   mounted() {
     let canvas = document.getElementById("canvas");
