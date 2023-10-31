@@ -201,7 +201,7 @@ export default {
         const char = charArray[index];
         let randomIndex = Math.floor(Math.random() * back_image.length);
         if (randomIndex === past || index === charArray.length - 1 && randomIndex === first) {
-          randomIndex = (past + 1) % back_image.length;
+          randomIndex = (randomIndex + 1) % back_image.length;
         }
         past = randomIndex
         if (index === 0) {
