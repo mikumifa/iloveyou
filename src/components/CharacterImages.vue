@@ -25,6 +25,7 @@
         <button class="action-button" @click="saveImage">保存图片</button>
         <button class="action-button" @click="saveGif">保存GIF</button>
       </div>
+
     </div>
 
     <canvas id="canvas" class="hidden-canvas"></canvas>
