@@ -162,7 +162,7 @@ export default {
         quality: 10, // 调整GIF质量，可以根据需要进行调整
         width: 800,  // GIF宽度
         height: 800, // GIF高度
-        workerScript: "../../static/gif.worker.js"
+        workerScript: "/gif.worker.js"
       });
 
 
