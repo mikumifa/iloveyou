@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="header">
-      <h1 class="title">生成图片</h1>
+      <h1 class="title">I Love You</h1>
     </div>
 
     <div class="content">
@@ -13,11 +13,11 @@
       <div class="output-group">
         <div class="output-caption">
           <p class="caption-text">GIF 图片</p>
-          <img :src="gifUrl" alt="Generated GIF" data-mode="video" class="output-image" />
+          <img :src="gifUrl" alt="Generating Image..." data-mode="video" class="output-image" />
         </div>
         <div class="output-caption">
           <p class="caption-text">静态图片</p>
-          <img :src="image" alt="Generated Image" class="output-image" />
+          <img :src="image" alt="Generating Image..." class="output-image" />
         </div>
       </div>
 
@@ -65,8 +65,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-}
+  padding-right: 10px; /* 为 input 元素的右侧添加 10px 的内边距 */
 
+}
+.input-group input {
+  margin: 10px;
+}
 .input-text {
   flex: 1;
   padding: 10px;
