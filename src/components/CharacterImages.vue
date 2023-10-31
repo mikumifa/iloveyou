@@ -44,8 +44,8 @@ export default {
       let pic_width = 800
       let pic_height = 800
 
-      canvas.width = text.length * (pic_width + interval) + interval + 1000
-      canvas.height = pic_height + 2 * interval + 1000
+      canvas.width = text.length * (pic_width + interval) + interval
+      canvas.height = pic_height + 2 * interval
       const charArray = Array.from(text);
 
       for (let index = 0; index < charArray.length; index++) {
