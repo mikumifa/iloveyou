@@ -6,18 +6,18 @@
 
     <div class="content">
       <div class="input-group">
-        <input v-model="inputText" class="input-text" placeholder="输入中文字" />
+        <input v-model="inputText" class="input-text" placeholder="输入中文字"/>
         <button class="action-button" @click="generateImages">生成图片</button>
       </div>
 
       <div class="output-group">
         <div class="output-caption">
           <p class="caption-text">GIF 图片</p>
-          <img :src="gifUrl" alt="Generating Image..." data-mode="video" class="output-image" />
+          <img :src="gifUrl" alt="Generating Image..." data-mode="video" class="output-image"/>
         </div>
         <div class="output-caption">
           <p class="caption-text">静态图片</p>
-          <img :src="image" alt="Generating Image..." class="output-image" />
+          <img :src="image" alt="Generating Image..." class="output-image"/>
         </div>
       </div>
 
@@ -68,9 +68,11 @@
   padding-right: 10px; /* 为 input 元素的右侧添加 10px 的内边距 */
 
 }
+
 .input-group input {
   margin: 10px;
 }
+
 .input-text {
   flex: 1;
   padding: 10px;
@@ -119,6 +121,7 @@
 .button-group {
   text-align: center;
 }
+
 .button-group button {
   margin: 10px;
 }
@@ -130,12 +133,11 @@
 .button-group button:last-child {
   margin-right: 0;
 }
+
 .hidden-canvas {
   display: none;
 }
 </style>
-
-
 
 
 <script>
@@ -177,6 +179,7 @@ export default {
         {x: 518, y: 280}
       ]
       let past = -1;
+      let first = -1;
       let canvas = document.getElementById("canvas");
       const gif_canvasList = [];
       let interval = 1
@@ -197,10 +200,13 @@ export default {
 
         const char = charArray[index];
         let randomIndex = Math.floor(Math.random() * back_image.length);
-        if (randomIndex === past) {
+        if (randomIndex === past || index === charArray.length - 1 && randomIndex === first) {
           randomIndex = (past + 1) % back_image.length;
         }
         past = randomIndex
+        if (index === 0) {
+          first = randomIndex
+        }
         const selectedImageUrl = back_image[randomIndex];
         const myCanvas = new Canvas(selectedImageUrl, canvas, {
           x: index * (interval + pic_width) + interval,
