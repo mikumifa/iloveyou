@@ -25,9 +25,9 @@
         <button class="action-button" @click="saveImage">保存图片</button>
         <button class="action-button" @click="saveGif">保存GIF</button>
       </div>
-
+      <AdSence></AdSence>
     </div>
-
+    <AdSence></AdSence>
     <canvas id="canvas" class="hidden-canvas"></canvas>
     <canvas id="gif_canvas" class="hidden-canvas"></canvas>
   </div>
@@ -147,8 +147,11 @@ import image1 from "@/assets/1.png"
 import image2 from "@/assets/2.png"
 import image3 from "@/assets/3.png"
 import GIF from 'gif.js';
+import {onMounted} from "vue";
+import AdSence from "@/components/AdSence.vue";
 
 export default {
+  components: {AdSence},
   data() {
     return {
       inputText: "我爱你",
@@ -313,6 +316,9 @@ export default {
     canvas.style.display = 'none'
     let gif_canvas = document.getElementById("gif_canvas");
     gif_canvas.style.display = 'none'
+    onMounted(() => {
+      window.addAds();
+    });
     this.generateImages();
   }
 };
