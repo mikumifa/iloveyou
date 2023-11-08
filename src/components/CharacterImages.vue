@@ -25,9 +25,16 @@
         <button class="action-button" @click="saveImage">保存图片</button>
         <button class="action-button" @click="saveGif">保存GIF</button>
       </div>
-      <AdSence></AdSence>
+
     </div>
-    <AdSence></AdSence>
+
+    <div class="adsense-ad">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="your-ad-client-id"
+           data-ad-slot="your-ad-slot-id"></ins>
+    </div>
+
     <canvas id="canvas" class="hidden-canvas"></canvas>
     <canvas id="gif_canvas" class="hidden-canvas"></canvas>
   </div>
@@ -212,7 +219,7 @@ export default {
           first = randomIndex
         }
         const selectedImageUrl = back_image[randomIndex];
-        let font = this.adjustFontSizeToFitWidth("bold 220px Arial",char,220)
+        let font = this.adjustFontSizeToFitWidth("bold 220px Arial", char, 220)
         const myCanvas = new Canvas(selectedImageUrl, canvas, {
           x: index * (interval + pic_width) + interval,
           y: interval
@@ -233,10 +240,10 @@ export default {
       // 在Canvas绘制完成后再保存图片
       setTimeout(() => {
 
-        for (let i = 0; i < gif_canvasList.length-1; i++) {
+        for (let i = 0; i < gif_canvasList.length - 1; i++) {
           gif.addFrame(gif_canvasList[i], {delay: 500});
         }
-        gif.addFrame(gif_canvasList[gif_canvasList.length-1], {delay: 1000});
+        gif.addFrame(gif_canvasList[gif_canvasList.length - 1], {delay: 1000});
         gif.on('finished', function (blob) {
           this.gifUrl = URL.createObjectURL(blob); // 将生成的 GIF 显示在页面上
         }.bind(this));
