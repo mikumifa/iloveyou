@@ -3,7 +3,8 @@
     <div class="header">
       <h1 class="title">I Love You</h1>
     </div>
-
+    <div class="adsence">
+    </div>
     <div class="content">
       <div class="input-group">
         <input v-model="inputText" class="input-text" placeholder="输入中文字"/>
@@ -25,7 +26,6 @@
         <button class="action-button" @click="saveImage">保存图片</button>
         <button class="action-button" @click="saveGif">保存GIF</button>
       </div>
-
     </div>
 
 
@@ -148,11 +148,8 @@ import image1 from "@/assets/1.png"
 import image2 from "@/assets/2.png"
 import image3 from "@/assets/3.png"
 import GIF from 'gif.js';
-import {onMounted} from "vue";
-import AdSence from "@/components/AdSence.vue";
 
 export default {
-  components: {AdSence},
   data() {
     return {
       inputText: "我爱你",
