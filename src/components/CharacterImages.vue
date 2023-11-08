@@ -27,7 +27,14 @@
         <button class="action-button" @click="saveGif">保存GIF</button>
       </div>
     </div>
-
+    <amp-ad width="100vw" height="320"
+            type="adsense"
+            data-ad-client="ca-pub-4401795294981614"
+            data-ad-slot="6205780303"
+            data-auto-format="mcrspv"
+            data-full-width="">
+      <div overflow=""></div>
+    </amp-ad>
 
     <canvas id="canvas" class="hidden-canvas"></canvas>
     <canvas id="gif_canvas" class="hidden-canvas"></canvas>
