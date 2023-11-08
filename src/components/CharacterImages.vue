@@ -28,12 +28,6 @@
 
     </div>
 
-    <div class="adsense-ad">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="your-ad-client-id"
-           data-ad-slot="your-ad-slot-id"></ins>
-    </div>
 
     <canvas id="canvas" class="hidden-canvas"></canvas>
     <canvas id="gif_canvas" class="hidden-canvas"></canvas>
@@ -323,9 +317,6 @@ export default {
     canvas.style.display = 'none'
     let gif_canvas = document.getElementById("gif_canvas");
     gif_canvas.style.display = 'none'
-    onMounted(() => {
-      window.addAds();
-    });
     this.generateImages();
   }
 };
